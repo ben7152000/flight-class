@@ -41,6 +41,12 @@ const props = defineProps({
 })
 
 const mapSrc = computed(() => {
+  // 如果是 Google Maps 短網址 (maps.app.goo.gl)，轉換為可嵌入的格式
+  if (props.location.includes('maps.app.goo.gl') || props.location.includes('goo.gl')) {
+    // 將短網址轉換為普通連結格式，讓用戶點擊開啟
+    return props.location.replace('maps.app.goo.gl', 'www.google.com/maps/d')
+  }
+
   // 如果是完整的 Google Maps 嵌入網址，直接使用
   if (props.location.startsWith('http')) {
     return props.location

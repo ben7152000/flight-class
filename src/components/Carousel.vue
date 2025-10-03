@@ -13,24 +13,6 @@
         </div>
       </div>
 
-      <!-- Navigation Arrows -->
-      <button class="carousel-btn carousel-btn-prev" @click="prevSlide">
-        <span>‹</span>
-      </button>
-      <button class="carousel-btn carousel-btn-next" @click="nextSlide">
-        <span>›</span>
-      </button>
-
-      <!-- Dots Indicator -->
-      <div class="carousel-dots">
-        <button
-          v-for="(slide, index) in slides"
-          :key="index"
-          class="carousel-dot"
-          :class="{ active: currentSlide === index }"
-          @click="goToSlide(index)"
-        ></button>
-      </div>
     </div>
   </section>
 </template>
@@ -38,35 +20,36 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const props = defineProps({
-  slides: {
-    type: Array,
-    required: true
+// Carousel data
+const slides = ref([
+  {
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=600&fit=crop',
+    title: '探索天空世界',
+    description: '專業飛行教學，開啟您的空中冒險'
   },
-  autoplayInterval: {
-    type: Number,
-    default: 5000
+  {
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=600&fit=crop',
+    title: 'FAA 國際認證',
+    description: '取得全球認可的飛行證照'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1200&h=600&fit=crop',
+    title: '專業飛行基地',
+    description: '台灣最佳飛行訓練場地'
   }
-})
+])
 
+const autoplayInterval = 5000
 const currentSlide = ref(0)
 let autoplayTimer = null
 
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % props.slides.length
-}
-
-const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + props.slides.length) % props.slides.length
-}
-
-const goToSlide = (index) => {
-  currentSlide.value = index
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
 }
 
 onMounted(() => {
-  if (props.autoplayInterval > 0) {
-    autoplayTimer = setInterval(nextSlide, props.autoplayInterval)
+  if (autoplayInterval > 0) {
+    autoplayTimer = setInterval(nextSlide, autoplayInterval)
   }
 })
 
@@ -140,66 +123,6 @@ onUnmounted(() => {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Carousel Navigation Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
-  color: white;
-  font-size: 3rem;
-  padding: 1rem 1.5rem;
-  cursor: pointer;
-  transition: background 0.3s;
-  z-index: 10;
-}
-
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.carousel-btn-prev {
-  left: 2rem;
-}
-
-.carousel-btn-next {
-  right: 2rem;
-}
-
-.carousel-btn span {
-  line-height: 1;
-}
-
-/* Carousel Dots */
-.carousel-dots {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 1rem;
-  z-index: 10;
-}
-
-.carousel-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.carousel-dot.active {
-  background: white;
-}
-
-.carousel-dot:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .carousel {
@@ -212,19 +135,6 @@ onUnmounted(() => {
 
   .carousel-description {
     font-size: 1rem;
-  }
-
-  .carousel-btn {
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .carousel-btn-prev {
-    left: 1rem;
-  }
-
-  .carousel-btn-next {
-    right: 1rem;
   }
 }
 </style>
