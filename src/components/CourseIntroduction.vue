@@ -3,14 +3,16 @@
     <div class="container">
       <h2 class="section-title">體驗介紹</h2>
       <div class="introduction-content">
-        <p>探索天空世界，從這裡開始。我們提供專業的飛行訓練課程，由經驗豐富的 FAA 認證教練指導，讓您安全、有趣地學習飛行技能。</p>
+        <p>
+          探索天空世界，從這裡開始。我們提供專業的飛行訓練課程，由經驗豐富的 FAA
+          認證教練指導，讓您安全、有趣地學習飛行技能。
+        </p>
       </div>
     </div>
   </section>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 // Color Variables

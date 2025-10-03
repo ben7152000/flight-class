@@ -7,7 +7,9 @@
         <div class="course-card">
           <div class="course-icon">✈️</div>
           <h3>私人飛行員執照課程</h3>
-          <p>取得國際認證的私人飛行員執照，開啟您的空中探險之旅。課程包含理論學習、模擬飛行訓練及實際飛行實習。</p>
+          <p>
+            取得國際認證的私人飛行員執照，開啟您的空中探險之旅。課程包含理論學習、模擬飛行訓練及實際飛行實習。
+          </p>
           <ul class="course-features">
             <li>✓ 40 小時飛行訓練</li>
             <li>✓ 理論課程學習</li>
@@ -56,8 +58,7 @@
   </section>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 // Color Variables
@@ -101,7 +102,9 @@ $text-light: #666666;
   background: $white;
   padding: 2rem;
   border-radius: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 
   &:hover {
     transform: translateY(-10px);

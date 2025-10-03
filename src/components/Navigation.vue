@@ -19,11 +19,11 @@ onMounted(() => {
   // 获取所有带有 id 的 section 元素
   const sections = document.querySelectorAll('section[id]')
 
-  navItems.value = Array.from(sections).map(section => {
+  navItems.value = Array.from(sections).map((section) => {
     const titleElement = section.querySelector('.section-title')
     return {
       id: section.id,
-      title: titleElement ? titleElement.textContent : section.id
+      title: titleElement ? titleElement.textContent : section.id,
     }
   })
 })

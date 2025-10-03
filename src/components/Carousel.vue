@@ -3,7 +3,7 @@
     <div class="carousel-container">
       <div class="carousel-slides" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
         <div v-for="(slide, index) in slides" :key="index" class="carousel-slide">
-          <img :src="slide.image" :alt="slide.title" class="carousel-image">
+          <img :src="slide.image" :alt="slide.title" class="carousel-image" />
           <div class="carousel-overlay">
             <div class="carousel-content">
               <h2 class="carousel-title">{{ slide.title }}</h2>
@@ -12,7 +12,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 </template>
@@ -25,18 +24,18 @@ const slides = ref([
   {
     image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=600&fit=crop',
     title: '探索天空世界',
-    description: '專業飛行教學，開啟您的空中冒險'
+    description: '專業飛行教學，開啟您的空中冒險',
   },
   {
     image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=600&fit=crop',
     title: 'FAA 國際認證',
-    description: '取得全球認可的飛行證照'
+    description: '取得全球認可的飛行證照',
   },
   {
     image: 'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=1200&h=600&fit=crop',
     title: '專業飛行基地',
-    description: '台灣最佳飛行訓練場地'
-  }
+    description: '台灣最佳飛行訓練場地',
+  },
 ])
 
 const autoplayInterval = 5000

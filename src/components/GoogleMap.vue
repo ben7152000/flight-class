@@ -5,7 +5,7 @@
         :src="mapSrc"
         :width="width"
         :height="height"
-        style="border:0;"
+        style="border: 0"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
@@ -21,23 +21,23 @@ const props = defineProps({
   // Google Maps 嵌入網址或地點名稱
   location: {
     type: String,
-    required: true
+    required: true,
   },
   // 地圖寬度
   width: {
     type: String,
-    default: '100%'
+    default: '100%',
   },
   // 地圖高度
   height: {
     type: String,
-    default: '450'
+    default: '450',
   },
   // 縮放等級
   zoom: {
     type: Number,
-    default: 15
-  }
+    default: 15,
+  },
 })
 
 const mapSrc = computed(() => {
