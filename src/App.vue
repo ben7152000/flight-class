@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import Carousel from './components/Carousel.vue'
+import GoogleMap from './components/GoogleMap.vue'
 
 // Carousel data
 const carouselSlides = ref([
@@ -20,6 +21,9 @@ const carouselSlides = ref([
     description: '台北最佳潛水訓練場地'
   }
 ])
+
+// Google Map location
+const mapLocation = ref('龍洞潛水基地, 台灣')
 </script>
 
 <template>
@@ -140,8 +144,26 @@ const carouselSlides = ref([
             <p>週一至週日 9:00-18:00</p>
           </div>
         </div>
+
+        <!-- Google Map -->
+        <div class="map-section">
+          <GoogleMap :location="mapLocation" height="400" :zoom="14" />
+        </div>
+
+        <div class="social-links">
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">YouTube</a>
+        </div>
       </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 台北學潛水. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -327,10 +349,15 @@ body {
   color: var(--text-dark);
 }
 
+.map-section {
+  margin: 3rem 0;
+}
+
 .social-links {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  margin-top: 3rem;
 }
 
 .social-link {
