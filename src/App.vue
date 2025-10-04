@@ -89,8 +89,57 @@ const connectWebSocket = () => {
   }
 }
 
+// 防止右鍵選單
+const disableContextMenu = (e) => {
+  e.preventDefault()
+  return false
+}
+
+// 防止複製、剪下
+const disableCopyPaste = (e) => {
+  e.preventDefault()
+  return false
+}
+
+// 防止選取文字
+const disableSelect = (e) => {
+  e.preventDefault()
+  return false
+}
+
+// 防止鍵盤快捷鍵（F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U）
+const disableDevTools = (e) => {
+  // F12
+  if (e.keyCode === 123) {
+    e.preventDefault()
+    return false
+  }
+  // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+  if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 67 || e.keyCode === 74)) {
+    e.preventDefault()
+    return false
+  }
+  // Ctrl+U (查看原始碼)
+  if (e.ctrlKey && e.keyCode === 85) {
+    e.preventDefault()
+    return false
+  }
+  // Cmd+Option+I, Cmd+Option+C, Cmd+Option+J (Mac)
+  if (e.metaKey && e.altKey && (e.keyCode === 73 || e.keyCode === 67 || e.keyCode === 74)) {
+    e.preventDefault()
+    return false
+  }
+}
+
 onMounted(() => {
   connectWebSocket()
+
+  // 添加事件監聽
+  document.addEventListener('contextmenu', disableContextMenu)
+  document.addEventListener('copy', disableCopyPaste)
+  document.addEventListener('cut', disableCopyPaste)
+  document.addEventListener('selectstart', disableSelect)
+  document.addEventListener('keydown', disableDevTools)
 })
 
 onUnmounted(() => {
@@ -100,6 +149,13 @@ onUnmounted(() => {
   if (ws) {
     ws.close()
   }
+
+  // 移除事件監聽
+  document.removeEventListener('contextmenu', disableContextMenu)
+  document.removeEventListener('copy', disableCopyPaste)
+  document.removeEventListener('cut', disableCopyPaste)
+  document.removeEventListener('selectstart', disableSelect)
+  document.removeEventListener('keydown', disableDevTools)
 })
 </script>
 
@@ -138,6 +194,10 @@ body {
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* 隱藏滾動條但保持滾動功能 */
