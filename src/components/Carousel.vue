@@ -110,18 +110,41 @@ import hero1Image from '../assets/hero1.jpg'
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     padding: 0 20px;
     gap: 2rem;
   }
 
+  .hero-content {
+    gap: 1rem;
+    text-align: center;
+  }
+
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+    line-height: 1.3;
   }
 
   .hero-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .hero-image-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .cta-button {
+    font-size: 0.95rem;
+    padding: 0.85rem 1.75rem;
+    margin: 0 auto;
   }
 }
 </style>

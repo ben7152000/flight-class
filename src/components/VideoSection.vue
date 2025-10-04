@@ -74,12 +74,8 @@ useIntersectionObserver(
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: $font-size-2xl;
-  }
-
   .video-section {
-    padding: $section-padding-mobile;
+    display: none;
   }
 }
 </style>

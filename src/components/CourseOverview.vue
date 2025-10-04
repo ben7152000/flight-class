@@ -70,12 +70,17 @@ useIntersectionObserver(
 }
 
 @media (max-width: 768px) {
+  .course-intro-section {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
   .section-title {
-    font-size: $font-size-2xl;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .intro-image-wrapper {

@@ -91,16 +91,27 @@ const pingtungLocation = ref(
 }
 
 @media (max-width: 768px) {
+  .map-section-wrapper {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
   .section-title {
-    font-size: $font-size-2xl;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .map-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .map-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
   }
 }
 </style>

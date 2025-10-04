@@ -216,21 +216,31 @@ const images = ref([
 }
 
 @media (max-width: 768px) {
+  .gallery-section {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
   .section-title {
-    font-size: $font-size-2xl;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .gallery-container {
+    gap: 1rem;
   }
 
   .thumbnail-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .main-image-wrapper {
-    height: 300px;
+    height: 250px;
+    border-radius: $border-radius-md;
   }
 }
 </style>

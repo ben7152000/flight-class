@@ -151,8 +151,8 @@ body {
 .spinner {
   width: 60px;
   height: 60px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
+  border: 4px solid rgba(92, 225, 184, 0.2);
+  border-top-color: #5ce1b8;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

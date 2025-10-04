@@ -197,35 +197,50 @@ const toggleFAQ = (index) => {
 }
 
 @media (max-width: 768px) {
+  .faq-section {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
   .section-title {
-    font-size: $font-size-2xl;
-    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .faq-grid {
+    gap: 0.75rem;
   }
 
   .faq-card {
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .faq-header {
-    gap: 1rem;
+    gap: 0.625rem;
   }
 
   .faq-number {
-    width: 40px;
-    height: 40px;
-    font-size: $font-size-sm;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 
   .faq-question {
-    font-size: $font-size-sm;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .faq-answer {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
   }
 
   .faq-answer p {
-    font-size: $font-size-xs;
+    font-size: 0.875rem;
+    line-height: 1.6;
   }
 }
 </style>

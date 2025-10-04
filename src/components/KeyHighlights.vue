@@ -238,38 +238,55 @@ useIntersectionObserver(
 }
 
 @media (max-width: 768px) {
+  .course-intro {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
   .section-title {
-    font-size: $font-size-2xl;
-    margin-bottom: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-grid {
+    gap: 1.5rem;
   }
 
   .info-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
 
     .card-title {
-      font-size: $font-size-lg;
+      font-size: 1.1rem;
     }
 
     .card-list li {
-      font-size: $font-size-xs;
+      font-size: 0.875rem;
+      padding: 0.3rem 0;
     }
 
     .notice-text {
-      font-size: $font-size-xs;
+      font-size: 0.875rem;
+      line-height: 1.6;
     }
   }
 
+  .hero-image {
+    border-radius: $border-radius-md;
+  }
+
   .image-caption {
+    padding: 1rem;
+    margin-top: 1rem;
+
     h3 {
-      font-size: $font-size-md;
+      font-size: 1rem;
     }
 
     p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
   }
 }

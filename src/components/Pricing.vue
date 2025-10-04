@@ -34,8 +34,8 @@
               <div>{{ plan.name }}</div>
               <div class="plan-subtitle">{{ plan.subtitle }}</div>
             </div>
-            <div class="plan-price new-price">{{ plan.newPrice }}</div>
-            <div class="plan-price old-price">{{ plan.oldPrice || '' }}</div>
+            <div class="plan-price" :class="plan.oldPrice ? 'new-price' : 'single-price'">{{ plan.newPrice }}</div>
+            <div v-if="plan.oldPrice" class="plan-price old-price">{{ plan.oldPrice }}</div>
           </div>
         </template>
 
@@ -249,25 +249,85 @@ const plans = ref([
 }
 
 @media (max-width: 768px) {
+  .pricing {
+    padding: 2rem 0;
+  }
+
   .container {
     padding: $container-padding-mobile;
   }
 
-  .table-header,
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-note {
+    font-size: 0.9rem;
+  }
+
+  .pricing-table {
+    border-radius: $border-radius-sm;
+  }
+
+  .table-header {
+    display: none;
+  }
+
   .pricing-row {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
-    padding: 1rem;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .plan-name {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+
+    div:first-child {
+      font-weight: 700;
+    }
+  }
+
+  .plan-subtitle {
+    font-size: 0.875rem;
+    color: $text-light;
   }
 
   .plan-price {
-    justify-content: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+
+    &.new-price::before {
+      content: '特價：';
+      font-weight: 400;
+      color: $text-medium;
+    }
+
+    &.old-price::before {
+      content: '原價：';
+      font-weight: 400;
+      color: $text-muted;
+    }
+
+    &.single-price {
+      font-weight: 600;
+      color: $text-dark;
+    }
   }
 
-  .pricing-note,
-  .plan-name,
-  .plan-price {
-    font-size: 0.9rem;
+  .note-section {
+    font-size: 0.85rem;
+    padding: 0.875rem;
   }
 }
 </style>

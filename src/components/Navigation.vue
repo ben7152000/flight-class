@@ -15,7 +15,7 @@
       <div class="overlay" :class="{ active: isMenuOpen }" @click="closeMenu"></div>
 
       <ul class="nav-menu" :class="{ active: isMenuOpen }">
-        <li v-for="item in navItems" :key="item.id">
+        <li v-for="item in navItems" :key="item.id" :class="{ 'hide-on-mobile': item.hideOnMobile }">
           <a href="#" @click.prevent="scrollToSection(item.id)">{{ item.title }}</a>
         </li>
       </ul>
@@ -30,7 +30,7 @@ const navItems = ref([
   { id: 'courses', title: '重點指引' },
   { id: 'intro', title: '課程簡介' },
   { id: 'gallery', title: '相片集' },
-  { id: 'video', title: '精彩影片' },
+  { id: 'video', title: '精彩影片', hideOnMobile: true },
   { id: 'faq', title: '常見問題' },
   { id: 'pricing', title: '課程價格' },
   { id: 'map', title: '交通位置' },
@@ -242,6 +242,10 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 20px;
+  }
+
+  .hide-on-mobile {
+    display: none;
   }
 }
 </style>
