@@ -20,11 +20,11 @@
               </svg>
             </div>
           </div>
-          <transition name="expand">
-            <div v-if="activeIndex === index" class="faq-answer">
+          <div class="faq-answer-wrapper" :class="{ expanded: activeIndex === index }">
+            <div class="faq-answer">
               <p>{{ faq.answer }}</p>
             </div>
-          </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -163,7 +163,19 @@ const toggleFAQ = (index) => {
   }
 }
 
+.faq-answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  &.expanded {
+    grid-template-rows: 1fr;
+  }
+}
+
 .faq-answer {
+  min-height: 0;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 2px solid rgba(26, 108, 122, 0.1);
@@ -174,26 +186,6 @@ const toggleFAQ = (index) => {
     line-height: 1.8;
     margin: 0;
   }
-}
-
-.expand-enter-active,
-.expand-leave-active {
-  transition: all $transition-smooth;
-  overflow: hidden;
-}
-
-.expand-enter-from,
-.expand-leave-to {
-  opacity: 0;
-  max-height: 0;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-.expand-enter-to,
-.expand-leave-from {
-  opacity: 1;
-  max-height: 500px;
 }
 
 @media (max-width: 768px) {
