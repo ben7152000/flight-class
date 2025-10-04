@@ -1,0 +1,110 @@
+@import './variables.scss';
+
+// Container Mixin
+@mixin container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $container-padding;
+
+  @media (max-width: 768px) {
+    padding: $container-padding-mobile;
+  }
+}
+
+@mixin container-md {
+  width: 100%;
+  max-width: $container-max-width-md;
+  margin: 0 auto;
+  padding: $container-padding;
+
+  @media (max-width: 768px) {
+    padding: $container-padding-mobile;
+  }
+}
+
+// Section Mixin
+@mixin section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: $section-padding;
+
+  @media (max-width: 768px) {
+    padding: $section-padding-mobile;
+  }
+}
+
+// Section Title Mixin
+@mixin section-title {
+  text-align: center;
+  font-size: $font-size-3xl;
+  color: $secondary-color;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid $primary-dark;
+
+  @media (max-width: 768px) {
+    font-size: $font-size-2xl;
+  }
+}
+
+// Card Mixin
+@mixin card {
+  background: $bg-white;
+  border-radius: $border-radius-lg;
+  padding: 2rem;
+  box-shadow: $shadow-md;
+  transition: all $transition-smooth;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+}
+
+// Fade In Animation Mixin
+@mixin fade-in-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity $transition-slow, transform $transition-slow;
+
+  &.fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Button Mixin
+@mixin button-primary {
+  background: $gradient-primary;
+  color: $bg-white;
+  padding: 1rem 2rem;
+  border-radius: $border-radius-md;
+  border: none;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(92, 225, 184, 0.4);
+  }
+}
+
+// Grid Mixin
+@mixin grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

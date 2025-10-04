@@ -1,47 +1,57 @@
 <template>
-  <section id="video" class="video-section">
+  <section ref="elementRef" id="video" class="video-section" :class="{ 'slide-up': isVisible }">
     <div class="container">
       <h2 class="section-title">精彩影片</h2>
-      <div class="video-wrapper">
-        <iframe
-          src="https://www.youtube.com/embed/IhA3yaUP3Ho"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+      <div v-if="isVisible" class="video-wrapper">
+        <video autoplay loop muted playsinline>
+          <source :src="pilotVideo" type="video/mp4" />
+        </video>
       </div>
     </div>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import pilotVideo from '../assets/video/pilot-video.mp4'
+
+const elementRef = ref(null)
+const isVisible = ref(false)
+
+useIntersectionObserver(
+  elementRef,
+  ([{ isIntersecting }]) => {
+    if (isIntersecting) {
+      isVisible.value = true
+    }
+  },
+  { threshold: 0.1, rootMargin: '50px' }
+)
+</script>
 
 <style lang="scss" scoped>
-// Color Variables
-$primary-color: #1a6c7a;
-$secondary-color: #153243;
-$light-bg: #f3f9fb;
-$white: #ffffff;
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
 
 .video-section {
-  padding: 5rem 0;
-  background: $light-bg;
+  @include section;
+  background: $bg-blue-light;
+  @include fade-in-section;
+}
+
+.video-section.slide-up {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  @include container-md;
 }
 
 .section-title {
+  @include section-title;
   text-align: center;
-  font-size: 2.5rem;
-  color: $secondary-color;
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 3px solid $primary-color;
   display: inline-block;
   width: auto;
   position: relative;
@@ -49,30 +59,27 @@ $white: #ffffff;
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%; // 16:9 aspect ratio
-  height: 0;
-  overflow: hidden;
+  width: 100%;
   margin: 0 auto;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
 
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+  video {
     width: 100%;
-    height: 100%;
-    border-radius: 15px;
+    height: auto;
+    display: block;
+    border-radius: $border-radius-lg;
   }
 }
 
 @media (max-width: 768px) {
   .section-title {
-    font-size: 2rem;
+    font-size: $font-size-2xl;
   }
 
   .video-section {
-    padding: 3rem 0;
+    padding: $section-padding-mobile;
   }
 }
 </style>

@@ -1,0 +1,59 @@
+// Color System
+$primary-color: #5ce1b8;        // 主色 - 薄荷綠
+$primary-dark: #1a6c7a;         // 主色深色 - 深青色
+$secondary-color: #153243;      // 次要色 - 深藍灰
+$accent-color: #9fd3c1;         // 強調色 - 淺薄荷綠
+$warning-color: #ff6b35;        // 警告色 - 橘色
+
+// Background Colors
+$bg-light: #fafafa;             // 淺灰背景
+$bg-white: #ffffff;             // 白色背景
+$bg-blue-light: #f3f9fb;        // 淺藍背景
+$bg-peach: #ffe8d6;             // 桃色背景
+
+// Text Colors
+$text-dark: #333333;            // 深色文字
+$text-medium: #555555;          // 中度文字
+$text-light: #666666;           // 淺色文字
+$text-muted: #999999;           // 灰色文字
+
+// Gradient Colors
+$gradient-primary: linear-gradient(135deg, $primary-dark, #2a8a9a);
+$gradient-light: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+$gradient-blue: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
+
+// Spacing
+$section-padding: 6rem 0;
+$section-padding-mobile: 3rem 0;
+$container-max-width: 1400px;
+$container-max-width-md: 1200px;
+$container-padding: 0 60px;
+$container-padding-mobile: 0 20px;
+
+// Border Radius
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+$border-radius-xl: 20px;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+// Transitions
+$transition-fast: 0.3s ease;
+$transition-normal: 0.5s ease;
+$transition-slow: 0.8s ease;
+$transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Typography
+$font-size-xs: 0.95rem;
+$font-size-sm: 1rem;
+$font-size-md: 1.1rem;
+$font-size-lg: 1.2rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.5rem;
+$font-size-4xl: 3.5rem;

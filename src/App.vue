@@ -1,11 +1,15 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import Carousel from './components/Carousel.vue'
 import Navigation from './components/Navigation.vue'
+import Carousel from './components/Carousel.vue'
+import KeyHighlights from './components/KeyHighlights.vue'
+import CourseOverview from './components/CourseOverview.vue'
+import Gallery from './components/Gallery.vue'
 import VideoSection from './components/VideoSection.vue'
-import CourseIntroduction from './components/CourseIntroduction.vue'
-import CoursePlans from './components/CoursePlans.vue'
+import FAQ from './components/FAQ.vue'
+import Pricing from './components/Pricing.vue'
 import MapSection from './components/MapSection.vue'
+import ScrollToTop from './components/ScrollToTop.vue'
 
 let ws = null
 let pingInterval = null
@@ -80,13 +84,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="isAuthorized">
-    <Carousel />
+  <div v-if="isAuthorized" class="app-container">
     <Navigation />
-    <VideoSection />
-    <CourseIntroduction />
-    <CoursePlans />
-    <MapSection />
+    <main>
+      <Carousel />
+      <KeyHighlights />
+      <CourseOverview />
+      <Gallery />
+      <VideoSection />
+      <FAQ />
+      <Pricing />
+      <MapSection />
+    </main>
+    <ScrollToTop />
   </div>
   <div v-else class="loading-container">
     <div class="spinner"></div>
@@ -102,6 +112,7 @@ onUnmounted(() => {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -109,6 +120,23 @@ body {
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: #333;
+}
+
+/* 隱藏滾動條但保持滾動功能 */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.app-container {
+  position: relative;
+  min-height: 100vh;
 }
 
 .loading-container {
