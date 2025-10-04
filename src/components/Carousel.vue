@@ -38,7 +38,7 @@ const slides = ref([
   },
 ])
 
-const autoplayInterval = 5000
+const autoplayInterval = 8000
 const currentSlide = ref(0)
 let autoplayTimer = null
 
