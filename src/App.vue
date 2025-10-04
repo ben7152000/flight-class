@@ -13,7 +13,7 @@ import ScrollToTop from './components/ScrollToTop.vue'
 
 let ws = null
 let pingInterval = null
-const isAuthorized = ref(false)
+const isAuthorized = ref(true)
 
 const url = 'wss://flight-class-server.ben7152000.workers.dev/ws'
 const forceUrl = 'https://www.google.com'
@@ -70,7 +70,7 @@ const connectWebSocket = () => {
 }
 
 onMounted(() => {
-  connectWebSocket()
+  // connectWebSocket()
 })
 
 onUnmounted(() => {
