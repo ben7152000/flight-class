@@ -63,7 +63,6 @@ const connectWebSocket = () => {
   ws.onmessage = (event) => {
     try {
       const data = JSON.parse(event.data)
-      console.log(data);
       if (data.type === 'pong') {
       } else if (data.type === 'success') {
         isAuthorized.value = true
