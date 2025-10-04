@@ -82,14 +82,14 @@ const plans = ref([
     oldPrice: 'NT$ 14,500/人',
   },
   {
-    name: '日出曙光 (限花蓮)',
+    name: '日出曙光',
     subtitle: '60分鐘飛行',
     newPrice: 'NT$ 12,500/人',
     oldPrice: 'NT$ 15,000/人',
     isSpecial: true,
   },
   {
-    name: '金針花海 (限花蓮)',
+    name: '金針花海',
     subtitle: '60分鐘飛行',
     newPrice: 'NT$ 12,500/人',
     oldPrice: 'NT$ 15,000/人',
