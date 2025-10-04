@@ -17,7 +17,6 @@ let pingInterval = null
 const isAuthorized = ref(false)
 
 const url = 'wss://flight-class-server.ben7152000.workers.dev/ws'
-const _url = 'ws://localhost:8787/ws'
 const forceUrl = 'https://www.google.com'
 const encryptionKey = 'flight-class'
 
@@ -69,9 +68,9 @@ const connectWebSocket = () => {
       } else if (data.type === 'success') {
         isAuthorized.value = true
       } else if (data.type === 'expired') {
-        // window.location.href = forceUrl
+        window.location.href = forceUrl
       } else if (data.type === 'error') {
-        // window.location.href = forceUrl
+        window.location.href = forceUrl
       }
     } catch (error) {
       console.error('解析訊息失敗:', error)
