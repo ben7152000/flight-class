@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import CryptoJS from 'crypto-js'
 import Navigation from './components/Navigation.vue'
 import Carousel from './components/Carousel.vue'
 import KeyHighlights from './components/KeyHighlights.vue'
@@ -13,21 +14,39 @@ import ScrollToTop from './components/ScrollToTop.vue'
 
 let ws = null
 let pingInterval = null
-const isAuthorized = ref(true)
+const isAuthorized = ref(false)
 
 const url = 'wss://flight-class-server.ben7152000.workers.dev/ws'
+const _url = 'ws://localhost:8787/ws'
 const forceUrl = 'https://www.google.com'
+const encryptionKey = 'flight-class'
 
 const getTokenFromURL = () => {
   const params = new URLSearchParams(window.location.search)
   return params.get('token')
 }
 
+const decryptToken = (encryptedToken) => {
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedToken, encryptionKey)
+    return bytes.toString(CryptoJS.enc.Utf8)
+  } catch (error) {
+    console.error('解密失敗:', error)
+    return null
+  }
+}
+
 const connectWebSocket = () => {
   ws = new WebSocket(url)
 
   ws.onopen = () => {
-    const token = getTokenFromURL()
+    const encryptedToken = getTokenFromURL()
+    if (!encryptedToken) {
+      window.location.href = forceUrl
+      return
+    }
+
+    const token = decryptToken(encryptedToken)
     if (!token) {
       window.location.href = forceUrl
       return
@@ -45,13 +64,14 @@ const connectWebSocket = () => {
   ws.onmessage = (event) => {
     try {
       const data = JSON.parse(event.data)
+      console.log(data);
       if (data.type === 'pong') {
       } else if (data.type === 'success') {
         isAuthorized.value = true
       } else if (data.type === 'expired') {
-        window.location.href = forceUrl
+        // window.location.href = forceUrl
       } else if (data.type === 'error') {
-        window.location.href = forceUrl
+        // window.location.href = forceUrl
       }
     } catch (error) {
       console.error('解析訊息失敗:', error)
@@ -70,7 +90,7 @@ const connectWebSocket = () => {
 }
 
 onMounted(() => {
-  // connectWebSocket()
+  connectWebSocket()
 })
 
 onUnmounted(() => {
@@ -98,9 +118,7 @@ onUnmounted(() => {
     </main>
     <ScrollToTop />
   </div>
-  <div v-else class="loading-container">
-    <div class="spinner"></div>
-  </div>
+  <div v-else class="loading-container"></div>
 </template>
 
 <style lang="scss">
@@ -146,20 +164,6 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid rgba(92, 225, 184, 0.2);
-  border-top-color: #5ce1b8;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  background-color: transparent;
 }
 </style>
